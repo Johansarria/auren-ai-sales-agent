@@ -12,6 +12,18 @@
 
 ---
 
+## 📖 English Summary
+
+> **An autonomous AI sales agent running a real store in production** — not a chatbot. It reacts to store events, reasons with business context, and executes real actions end-to-end over WhatsApp Business.
+
+- 🛒 **Store:** [AUREN](https://aurenstore.store) — a footwear e-commerce in Colombia built on Shopify.
+- 🤖 **What the agent does:** notifies customers of shipping guides the moment an order is fulfilled · recovers abandoned checkouts with a 3-touch discount ladder (CTA opens checkout with the coupon pre-applied) · captures leads with UTM attribution.
+- 📱 **Meta Business:** WhatsApp Business Platform (WABA) with Meta-approved templates (transactional + promotional) and Meta Pixel conversion tracking.
+- 🧱 **Stack:** Python · Docker · autonomous agent orchestration (Hermes) · LLM reasoning · Shopify Admin API · Supabase (PostgreSQL + RLS) · Interrapísimo shipping.
+- 🔒 **Privacy by design:** this repo is public narrative only — no production code, credentials, routes, or customer data. The live system stays private.
+
+_El caso completo continúa en español a continuación._
+
 ## 🤖 ¿Por qué un *agente* y no un chatbot?
 
 | | Chatbot clásico | Agente autónomo |
@@ -34,33 +46,9 @@ El agente no espera a que le pregunten: **cuando un pedido pasa a enviado, el cl
 
 ## ⚙️ La solución: arquitectura
 
-```
-                    ┌─────────────────────────────┐
-                    │     WhatsApp (clientes)      │
-                    └──────────────┬──────────────┘
-                                   │
-                        ┌──────────▼──────────┐
-                        │   WhatsApp Cloud     │
-                        │   API  (Meta WABA)   │
-                        └──────────┬──────────┘
-                                   │ mensajes y webhooks
-┌────────────────────┐             │
-│  Tienda Shopify    │◄────────────┤
-│  (aurenstore.store)│             │
-└─────────┬──────────┘             │
-          │ webhooks               │
-          ▼                        ▼
-┌─────────────────────────────────────────────┐
-│          AGENTE DE IA (Python · Docker)      │
-│  observa eventos → decide con LLM → ejecuta  │
-└───────┬─────────────────────────┬────────────┘
-        │                         │
-        ▼                         ▼
-┌──────────────┐          ┌──────────────────┐
-│   Supabase    │          │   Shopify Admin   │
-│ Postgres+RLS  │          │   API (REST)      │
-└──────────────┘          └──────────────────┘
-```
+<p align="center">
+  <img src="assets/architecture.svg" alt="Arquitectura del agente de ventas IA de AUREN" width="820">
+</p>
 
 **Evento → Acción del agente:**
 

@@ -1,6 +1,6 @@
 # Arquitectura — Agente de Ventas AUREN
 
-Documento de soporte del case study público. Describe el diseño a nivel conceptual, sin código, rutas ni credenciales.
+Documento de soporte del case study público. Describe el diseño a nivel conceptual, sin código, rutas ni credenciales. El autor diseñó e implementó el ecosistema completo: storefront Shopify (tema a medida), esquema Supabase con RLS y el agente autónomo.
 
 ## Vista de componentes
 
